@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35806.99 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorRepositoryLibrary", "ActorRepositoryLibrary\ActorRepositoryLibrary.csproj", "{FA0AF6D5-5954-4C81-9D3C-E09F9F3132DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorRepositoryLibraryTests", "ActorRepositoryLibraryTests\ActorRepositoryLibraryTests.csproj", "{0B4F5E75-FAE1-4BBA-8727-C101B67973B7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FA0AF6D5-5954-4C81-9D3C-E09F9F3132DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA0AF6D5-5954-4C81-9D3C-E09F9F3132DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA0AF6D5-5954-4C81-9D3C-E09F9F3132DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA0AF6D5-5954-4C81-9D3C-E09F9F3132DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B4F5E75-FAE1-4BBA-8727-C101B67973B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B4F5E75-FAE1-4BBA-8727-C101B67973B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B4F5E75-FAE1-4BBA-8727-C101B67973B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B4F5E75-FAE1-4BBA-8727-C101B67973B7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E16B30B5-5EFD-440E-B7F3-4731B9F21E3C}
+	EndGlobalSection
+EndGlobal
