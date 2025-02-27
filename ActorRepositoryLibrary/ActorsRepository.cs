@@ -12,9 +12,18 @@ namespace ActorRepositoryLibrary
         private List<Actor> actors = new();
         private int nextId = 1;
 
-        public List<Actor> GetActors()
+        public IEnumerable<Actor> GetActors(int? birthYearBefore = null, int? birthYearAfter = null, string? nameIncludes = null)
         {
-            return new List<Actor>(actors);
+            IEnumerable<Actor> result = new List<Actor>(actors);
+            if (birthYearBefore != null)
+            {
+                result = result.Where(a => a.BirthYear > birthYearBefore);
+            }
+            if (birthYearAfter != null)
+            {
+                result = result.Where(a => a.BirthYear < birthYearAfter);
+            }
+            return result;
         }
         public Actor Add(Actor actor)
         {
