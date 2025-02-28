@@ -12,7 +12,7 @@ namespace ActorRepositoryLibrary
         private List<Actor> actors = new();
         private int nextId = 1;
 
-        public IEnumerable<Actor> GetActors(int? birthYearBefore = null, int? birthYearAfter = null, string? nameIncludes = null)
+        public IEnumerable<Actor> GetActors(int? birthYearBefore = null, int? birthYearAfter = null, string? nameIncludes = null, string? sortBy = null)
         {
             IEnumerable<Actor> result = new List<Actor>(actors);
             if (birthYearBefore != null)
@@ -27,7 +27,32 @@ namespace ActorRepositoryLibrary
             {
                 result = result.Where(m => m.Name.Contains(nameIncludes));
             }
+
+            if (sortBy != null)
+            {
+                sortBy = sortBy.ToLower();
+                switch (sortBy)
+                {
+                    case "name":
+                    case "name_asc":
+                        result = result.OrderBy(m => m.Name);
+                        break;
+                    case "name_desc":
+                        result = result.OrderByDescending(m => m.Name);
+                        break;
+                    case "birthYear":
+                    case "birthYear_asc":
+                        result = result.OrderBy(m => m.BirthYear);
+                        break;
+                    case "birthYear_desc":
+                        result = result.OrderByDescending(m => m.BirthYear);
+                        break;
+                    default:
+                        break; 
+                }
+            }
             return result;
+
         }
         public Actor Add(Actor actor)
         {

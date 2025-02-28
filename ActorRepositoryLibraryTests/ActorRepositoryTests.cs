@@ -21,7 +21,7 @@ namespace ActorRepositoryLibrary.Tests
             repo.Add(new Actor() { Name = "testActor1", BirthYear = 1984 });
             repo.Add(new Actor() { Name = "testActor2", BirthYear = 1985 });
             repo.Add(new Actor() { Name = "testActor3", BirthYear = 1986 });
-            repo.Add(new Actor() { Name = "testAcotr4", BirthYear = 1987 });
+            repo.Add(new Actor() { Name = "testActor4", BirthYear = 1987 });
         }
         [TestMethod()]
         public void AddActorTest()
@@ -52,6 +52,12 @@ namespace ActorRepositoryLibrary.Tests
 
             IEnumerable<Actor> filteredActors3 = repo.GetActors(nameIncludes: "Actor2");
             Assert.AreEqual(1, filteredActors3.Count());
+            
+            IEnumerable<Actor> sortedActors = repo.GetActors(sortBy: "name");
+            Assert.AreEqual(sortedActors.First().Name, "testActor1");
+
+            IEnumerable<Actor> sortedActors2 = repo.GetActors(sortBy: "birthyear");
+            Assert.AreEqual(sortedActors2.First().Name, "testActor1");
         }
         [TestMethod()]
         public void RemoveTest()
