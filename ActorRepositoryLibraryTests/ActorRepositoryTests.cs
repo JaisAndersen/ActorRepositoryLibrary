@@ -11,13 +11,13 @@ namespace ActorRepositoryLibrary.Tests
     [TestClass()]   
     public class ActorRepositoryTests
     {
-        ActorsRepository repo;
+        ActorsRepositoryList repo;
         Actor actor;
 
         [TestInitialize]
         public void Initialize()
         {
-            repo = new ActorsRepository();
+            repo = new ActorsRepositoryList();
             repo.Add(new Actor() { Name = "testActor1", BirthYear = 1984 });
             repo.Add(new Actor() { Name = "testActor2", BirthYear = 1985 });
             repo.Add(new Actor() { Name = "testActor3", BirthYear = 1986 });
