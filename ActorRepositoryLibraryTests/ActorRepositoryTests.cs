@@ -19,7 +19,7 @@ namespace ActorRepositoryLibrary.Tests
         {
             repo = new ActorsRepository();
             repo.Add(new Actor() { Name = "testActor1", BirthYear = 1984 });
-            repo.Add(new Actor() { Name = "testAcotr2", BirthYear = 1985 });
+            repo.Add(new Actor() { Name = "testActor2", BirthYear = 1985 });
             repo.Add(new Actor() { Name = "testActor3", BirthYear = 1986 });
             repo.Add(new Actor() { Name = "testAcotr4", BirthYear = 1987 });
         }
@@ -42,7 +42,16 @@ namespace ActorRepositoryLibrary.Tests
         {
             IEnumerable<Actor> actors = repo.GetActors();
             Assert.AreEqual(4, actors.Count());
-            Assert.AreEqual(actors.First().Name, "testActor1");            
+            Assert.AreEqual(actors.First().Name, "testActor1");
+
+            IEnumerable<Actor> filteredActors = repo.GetActors(birthYearBefore: 1985);
+            Assert.AreEqual(1, filteredActors.Count());
+
+            IEnumerable<Actor> filteredActors2 = repo.GetActors(birthYearAfter: 1985);
+            Assert.AreEqual(2, filteredActors2.Count());
+
+            IEnumerable<Actor> filteredActors3 = repo.GetActors(nameIncludes: "Actor2");
+            Assert.AreEqual(1, filteredActors3.Count());
         }
         [TestMethod()]
         public void RemoveTest()
@@ -60,6 +69,6 @@ namespace ActorRepositoryLibrary.Tests
             Assert.ThrowsException<ArgumentNullException>(() => repo.Update(100, m));
             Assert.AreEqual(1, repo.Update(1, m)?.Id);
             Assert.AreEqual(4, repo.GetActors().Count());
-        }
+        }   
     }
 }

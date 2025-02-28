@@ -17,11 +17,15 @@ namespace ActorRepositoryLibrary
             IEnumerable<Actor> result = new List<Actor>(actors);
             if (birthYearBefore != null)
             {
-                result = result.Where(a => a.BirthYear > birthYearBefore);
+                result = result.Where(a => a.BirthYear < birthYearBefore);
             }
             if (birthYearAfter != null)
             {
-                result = result.Where(a => a.BirthYear < birthYearAfter);
+                result = result.Where(a => a.BirthYear > birthYearAfter);
+            }
+            if (nameIncludes != null)
+            {
+                result = result.Where(m => m.Name.Contains(nameIncludes));
             }
             return result;
         }
