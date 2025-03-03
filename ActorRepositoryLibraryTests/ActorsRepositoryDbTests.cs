@@ -35,7 +35,20 @@ namespace ActorRepositoryLibrary.Tests
         [TestMethod()]
         public void AddTest()
         {
-            Assert.Fail();
+            repo.Add(new Actor { Name = "Brad", BirthYear = 1821 });
+            Actor bradPitt = repo.Add(new Actor { Name = "BradPitt", BirthYear = 1974 });
+            Assert.IsTrue(bradPitt.Id >= 0);
+            IEnumerable<Actor> all = repo.GetActors();
+            Assert.AreEqual(2, all.Count());
+
+            Assert.ThrowsException<ArgumentNullException>(
+                () => repo.Add(new Actor { Name = null, BirthYear = 1821 }));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(
+                () => repo.Add(new Actor { Name = "A", BirthYear = 1821 }));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(
+                () => repo.Add(new Actor { Name = "Brad", BirthYear = 1820 }));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(
+                () => repo.Add(new Actor { Name = "Brad", BirthYear = 10000}));
         }
     }
 }
