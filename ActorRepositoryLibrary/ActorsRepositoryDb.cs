@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace ActorRepositoryLibrary
 {
@@ -41,7 +42,44 @@ namespace ActorRepositoryLibrary
 
         public IEnumerable<Actor> GetActors(int? birthYearBefore = null, int? birthYearAfter = null, string? nameIncludes = null, string? sortBy = null)
         {
-            throw new NotImplementedException();
+            IQueryable<Actor> query = context.Actors.ToList().AsQueryable();
+            if (birthYearBefore != null)
+            {
+                query = query.Where(a => a.BirthYear < birthYearBefore);
+            }
+            if (birthYearAfter != null)
+            {
+                query = query.Where(a => a.BirthYear > birthYearAfter);
+            }
+            if (nameIncludes != null)
+            {
+                query = query.Where(m => m.Name.Contains(nameIncludes));
+            }
+
+            if (sortBy != null)
+            {
+                sortBy = sortBy.ToLower();
+                switch (sortBy)
+                {
+                    case "name":
+                    case "name_asc":
+                        query = query.OrderBy(m => m.Name);
+                        break;
+                    case "name_desc":
+                        query = query.OrderByDescending(m => m.Name);
+                        break;
+                    case "birthYear":
+                    case "birthYear_asc":
+                        query = query.OrderBy(m => m.BirthYear);
+                        break;
+                    case "birthYear_desc":
+                        query = query.OrderByDescending(m => m.BirthYear);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            return query;
         }
 
         public Actor Update(int id, Actor newData)
