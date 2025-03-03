@@ -24,7 +24,14 @@ namespace ActorRepositoryLibrary
 
         public Actor Delete(int id)
         {
-            throw new NotImplementedException();
+            Actor? actor = GetActorById(id);
+            if (actor is null)
+            {
+                return null;
+            }
+            context.Actors.Remove(actor);
+            context.SaveChanges();
+            return actor;
         }
 
         public Actor? GetActorById(int id)
