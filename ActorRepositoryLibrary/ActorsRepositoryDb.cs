@@ -36,7 +36,7 @@ namespace ActorRepositoryLibrary
 
         public Actor? GetActorById(int id)
         {
-            throw new NotImplementedException();
+            return context.Actors.FirstOrDefault(a => a.Id == id);
         }
 
         public IEnumerable<Actor> GetActors(int? birthYearBefore = null, int? birthYearAfter = null, string? nameIncludes = null, string? sortBy = null)
@@ -46,7 +46,12 @@ namespace ActorRepositoryLibrary
 
         public Actor Update(int id, Actor newData)
         {
-            throw new NotImplementedException();
+            Actor? actorToUpdate = GetActorById(id);
+            if (actorToUpdate == null) return null;
+            actorToUpdate.Name = newData.Name;
+            actorToUpdate.BirthYear = newData.BirthYear;
+            context.SaveChanges();
+            return actorToUpdate;
         }
     }
 }
