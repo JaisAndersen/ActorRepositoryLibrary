@@ -12,8 +12,7 @@ namespace ActorRepositoryLibrary.Tests
     public class ActorRepositoryTests
     {
         ActorsRepositoryList repo;
-        Actor actor;
-
+        
         [TestInitialize]
         public void Initialize()
         {
