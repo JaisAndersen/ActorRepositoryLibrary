@@ -25,7 +25,7 @@ namespace ActorRepositoryLibrary
             }
             if (nameIncludes != null)
             {
-                result = result.Where(m => m.Name.Contains(nameIncludes));
+                result = result.Where(m => m.Name.Contains(nameIncludes, StringComparison.OrdinalIgnoreCase));
             }
 
             if (sortBy != null)
